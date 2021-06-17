@@ -14,6 +14,17 @@ module.exports = (app) => {
         }
 
     })
+
+    app.get('/index', async (req,res)=>{
+        try{
+            res.render('index');
+        }catch(err){
+            console.log(err);
+            res.status(400).json('No se puede mostrar');
+        }
+
+    })
+
     app.post('/login',middJsonAuth.chkLogin, async (req,res)=>{
         
         let usuario = req.body
@@ -51,13 +62,14 @@ module.exports = (app) => {
         }
 
     })
-    app.get('/index', async (req,res)=>{
-        try{
-            
-            res.render('index');
+    app.get('/usuarios', async (req,res)=>{
+        try {
+            let resultado = await usersServices.listarUsuarios();
+            console.log("estos son los usuarios", resultado);
+            res.send(resultado)
         }catch (err){
             console.log(err)
-            res.estatus(400).json('No se puede mostrar')
+            res.status(400).json('Error al dirigirse a la ruta vistas')
         }
     })
 
@@ -71,6 +83,6 @@ module.exports = (app) => {
         }
     })
    
-
+   
    
 }

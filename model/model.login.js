@@ -2,7 +2,7 @@ const { DataTypes, Model } = require('sequelize')
 const sequelize = require('../db/conexion')
 
 //Definicion del modelo de usuario
-const Usuarios = sequelize.define('Usuario', {
+const usuario = sequelize.define('usuario', {
     id : {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -32,21 +32,45 @@ const Usuarios = sequelize.define('Usuario', {
         type: DataTypes.DATE,
         allowNull: false
     },
-    idEstatus:{
-        type: DataTypes.INTEGER,
+    nacionalidad_user:{
+        type: DataTypes.STRING(40),
         allowNull: false
-    }
+    },
+    nacionalidad_user:{
+      type: DataTypes.STRING(40),
+      allowNull: false
+    },
+    ciudad_res_user:{
+      type: DataTypes.STRING(40),
+      allowNull: false
+    },
+    pais_res_user:{
+      type: DataTypes.STRING(40),
+      allowNull: false
+    },
+    idioma_nat_user:{
+      type: DataTypes.STRING(40),
+      allowNull: false
+    },
+    linkedin_user:{
+      type: DataTypes.STRING(40),
+      allowNull: false
+    },
+    desc_hobbie_user:{
+      type: DataTypes.STRING(40),
+      allowNull: false
+    },
 }, {
     timestamps: true
 })
 
-module.exports = Usuarios
+module.exports = usuario
 
 module.exports.existenciaDeUsuario = async (usr)=>{
     //chequear con la base de datos que exista el usuario
     //Usuario y pass
     //devuelvo un OK
-    let resultado = await Usuarios.findOne({where: {email:usr.email, contrasena: usr.contrasena}})
+    let resultado = await usuario.findOne({where: {email:usr.email, contrasena: usr.contrasena}})
     // null
     if (resultado === null){
         return false
@@ -56,7 +80,7 @@ module.exports.existenciaDeUsuario = async (usr)=>{
 }
 
 module.exports.recuperarInfoUser = async (usr) => {
-    let resultado = await Usuarios.findAll({where: {email:usr.email, contrasena: usr.contrasena}})
+    let resultado = await usuario.findAll({where: {email:usr.email, contrasena: usr.contrasena}})
     if (resultado === null){
       return false
     }else {
@@ -66,7 +90,7 @@ module.exports.recuperarInfoUser = async (usr) => {
 
 module.exports.newUsuario = async (usr)=> {
     console.log(usr)
-    let resultado = await Usuarios.create({nombre: usr.nombre, apellidos: usr.apellidos, email: usr.email , 
+    let resultado = await usuario.create({nombre: usr.nombre, apellidos: usr.apellidos, email: usr.email , 
     movil: usr.movil, telefono: usr.telefono, ciudad: usr.ciudad, estado: usr.estado, cp: usr.cp,bandera_admin:usr.bandera_admin, contrasena: usr.contrasena,
     fechaAlta: usr.fechaAlta, idEstatus: usr.idEstatus  })
 
@@ -76,7 +100,7 @@ module.exports.newUsuario = async (usr)=> {
 
 module.exports.modUsuario = async (usr) => {
   try {
-    let resultado = await Usuarios.update({nombre: usr.nombre, apellidos: usr.apellidos, email: usr.email , 
+    let resultado = await usuario.update({nombre: usr.nombre, apellidos: usr.apellidos, email: usr.email , 
       movil: usr.movil, telefono: usr.telefono, ciudad: usr.ciudad, estado: usr.estado, cp: usr.cp,bandera_admin:usr.bandera_admin, contrasena: usr.contrasena,
       fechaAlta: usr.fechaAlta, idEstatus: usr.idEstatus }, {where: { id : usr.id}})
     return resultado;
@@ -87,7 +111,7 @@ module.exports.modUsuario = async (usr) => {
 
 module.exports.eliminarUsuario = async (id) => {
     try{
-        let resultado = await Usuarios.destroy({
+        let resultado = await usuario.destroy({
             where: { id: id }
         })
         return true
@@ -97,13 +121,13 @@ module.exports.eliminarUsuario = async (id) => {
   } 
 
   module.exports.listar = async ()=>{
-    let resultado = await sequelize.query('SELECT * FROM usuarios')
+    let resultado = await sequelize.query('SELECT * FROM usuario')
     return resultado[0]
 } 
 
 module.exports.buscarUsuarios = async (data) => {
     try{
-      let resultado = await Usuarios.findAll({
+      let resultado = await usuario.findAll({
         where: { id : data }
       })
       return resultado[0]
