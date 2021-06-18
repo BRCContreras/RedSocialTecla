@@ -6,7 +6,8 @@ const sequelize = require('./db/conexion')
 const userRoutes = require('./view/rutas')
 const midd = require('./midd/midd');
 const cors = require('cors');
-const Usuarios = require('./model/model.login')
+const Usuario = require('./db/usuario')
+const Universidad = require('./db/universidad')
 //const Producto = require('./db/db.productos')
 
 //const serviciosMercadoLibre = require("./services/services");
@@ -33,9 +34,10 @@ app.set('views', __dirname + '/views');
 //iniciar servidor
 async function inicioServidor(){
   try{
-      //await Usuarios.sync({alter:true})
-      //await Producto.sync({alert:true})
-      await sequelize.authenticate();
+     //await Universidad.sync({force:true});
+     //await Usuario.sync({force:true});
+     
+     await sequelize.authenticate();
       //await Usuarios.newUsuario({nombre:'Brandon', apellidos: 'Contreras', email: 'braru@gmail.com',movil: '4652313413', telefono: '5642156023',ciudad:'Mexico',estado:'Mexico', cp:'56460',  contrasena: '123' , usuario: 'braru@gmail.com', fechaAlta:'2022', idEstatus: 2})
 
    // await Usuarios.newUsuario({nombre:'Dana', apellidos: 'Rivera', email: 'dana@gmail.com',bandera_admin:'2',  contrasena: '123', fechaAlta:'2021', idEstatus: 1})

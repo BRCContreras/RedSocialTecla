@@ -1,41 +1,37 @@
 const { DataTypes, Sequelize } = require('sequelize')
 const sequelize = require('./conexion')
-const usuario = require('./usuario')
+const universidad = require('./universidad')
 
 //Definicion del modelo de usuario
-const universidad = sequelize.define('universidades', {
+const usuario = sequelize.define('usuario', {
     id : {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-    nombre_uni: {
+    nombre: {
         type: DataTypes.STRING(40),
         allowNull: false,
     },
-    carrera_uni: {
+    apellidos: {
         type: DataTypes.STRING(80),
         allowNull: false,
     },
-    estatus_uni: {
+    email: {
+        type: DataTypes.STRING(50),
+        allowNull: false
+    },
+    bandera_admin: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    
+    contrasena: {
+        type: DataTypes.STRING(15),
+        allowNull: false
+    },
 }, {
     timestamps: true
 })
 
-let relacion = {
-    foreignKey: {
-        name: 'id_user',
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    onDelete: 'CASCADE'
-};
 
-usuario.hasMany(universidad, relacion);
-universidad.belongsTo(usuario, relacion);
-
-module.exports = universidad
+module.exports = usuario
