@@ -12,7 +12,7 @@ registro.addEventListener('click', async (event) => {
     //UsuarioNuevo.recuperaUsuario(new UsuarioNuevo(email.value, contrasena.value,nombre.value,apellidos.value,movil.value,telefono.value,ciudad.value,estado.value,cp.value,));
    console.log("boton");
     if(contrasena.value === contrasena2.value){
-    let resultado = await fetch("http://localhost:3000/registro", { // /nuevousuarios
+    let resultado = await fetch("http://localhost:3000/add", { // /nuevousuarios
         method: 'post',
         headers: {
             "Accept": "application/json, text/plain, *,*",

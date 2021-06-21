@@ -1,0 +1,93 @@
+<%- include("headers/cabecera.index.ejs") %>
+
+    <body class="bg-light">
+        <%- include("headers/header.ejs") %>
+        <div class="container">
+            <main>
+              <div class="py-5 text-center">
+                <img class="d-block mx-auto mb-4" src="/icons/person-icon.png" alt="" width="96" height="99">
+                <h2>Registro de universidad</h2>
+              </div>
+      
+              <div class="row g-8 ">
+      
+                <div class="col-md-12 col-lg-12">
+                  <h4 class="mb-3 text-center">Información de universidad</h4>
+                  <form id="formulario" class="needs-validation" novalidate>
+                    <div class="row g-3">
+                      <div class="col-sm-2">
+      
+                      </div>
+                      <div class="col-sm-4">
+                        <label for="firstName" class="form-label">ID</label>
+                        <input type="text" class="form-control" id="idUser" placeholder="" value="<%= result.id %>"
+                          readonly>
+
+                        </div>
+                   
+                      <div class="col-sm-4">
+                        <label for="firstName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" placeholder="" value="<%= result.nombre_uni %>" required>
+                        <div class="invalid-feedback">
+                          Nombre (s) es un campo obligatorio.
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+      
+                    </div>
+                    <div class="col-sm-2">
+      
+                    </div>
+
+                      
+
+                    <div class="col-sm-4">
+                        <label for="firstName" class="form-label">Carrera</label>
+                        <input type="text" class="form-control" id="nameCarrera" placeholder="" value="<%= result.carrera_uni %>" required>
+                        <div class="invalid-feedback">
+                          Nombre (s) es un campo obligatorio.
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <label for="firstName" class="form-label">Status: Egresado</label>
+                          
+                          <select value="<%= result.estatus_uni %>" id="certified" name="tipo_usuario"
+                            class="form-select" tabindex="6" required>
+                            
+                            <option value="Egresado" >Si</option>
+                            <option value="Estudiante" >No</option>
+                            
+                          </select>
+                        
+                      </div>
+      
+                    <hr class="my-4">
+                    <div style="text-align: center;">
+                        <a href="/editProfile" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Cancelar</a>;
+
+                      <a href="" id="submit" class="btn btn-secondary btn-lg " tabindex="-1" role="button"
+                        aria-disabled="true">Agregar</a>
+                      
+                    </div>
+      
+                  </form>
+                </div>
+              </div>
+            </main>
+      
+            <footer class="my-5 pt-5 text-muted text-center text-small">
+              <p class="mb-1">&copy; 2021 Social Tecler</p>
+              <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Privacidad</a></li>
+                <li class="list-inline-item"><a href="#">Terminos y Condiciones</a></li>
+                <li class="list-inline-item"><a href="#">Soporte</a></li>
+              </ul>
+            </footer>
+          </div>
+    </body>
+
+    <script src="/js/modUniversity.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+
+    </html>

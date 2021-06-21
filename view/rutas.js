@@ -105,8 +105,9 @@ module.exports = (app) => {
             let resultado = await usersServices.buscarUsuario(data)
             console.log(resultado)
             let idiomas = await usersServices.listarIdiomas(data);
+            let universidad = await usersServices.listarUni(data);
             res.render('editProfile', {
-                result:resultado.dataValues, idioma:idiomas})
+                result:resultado.dataValues, idioma:idiomas, uni:universidad})
                 
         }catch(err){
             console.log(err);
@@ -183,6 +184,68 @@ module.exports = (app) => {
         let data = req.params.id;
         try {
             let resultado = await usersServices.eliminarIdioma(data)
+            if(resultado){
+                console.log(" Se elimino correctamente")
+            }      
+        }catch (err){
+            res.status(400).json('No puedo eliminar el idioma')
+        }
+    })
+
+    //Universidad
+    app.get('/editProfile/university/:id', async (req,res)=>{
+        let resultado = req.params.id;
+        try{
+            res.render('university', {
+                result:resultado
+            })
+        }catch(err){
+            console.log(err);
+            res.status(400).json('No se puede mostrar');
+        }
+
+    })
+
+    app.post('/add/university', async (req,res)=>{
+        let idiomaNuevo = req.body
+        try {
+            let resultado = await usersServices.agregarUniversidad(idiomaNuevo)
+            res.status(200).json('idioma agregado correctamente')
+        }catch (err){
+            console.log(err)
+            res.status(400).json('algo raro paso')
+        }
+
+    })
+
+    app.get('/editUniversity/:id', async (req,res)=>{
+        let data = req.params.id;
+        try {
+            let resultado = await usersServices.buscarUni(data)
+            res.render('editUniversity', {
+                result:resultado.dataValues 
+            })
+            // res.send(200,resultado[id]);
+        }catch (err){
+            res.status(400).json('Error al dirigirse al perfil universidad')
+        }
+    })
+    
+    app.post('/modificarUni', async (req, res)=>{
+        let usuMod = req.body
+        try {
+            let resultado = await usersServices.modificarUni(usuMod)
+            console.log(" Se actualizo correctamente")
+        }catch (err){
+            console.log(err)
+            res.status(400).json('Error al modificar usuario')
+        }
+    })
+
+    app.get('/deleteUni/:id', async (req,res)=>{
+        let data = req.params.id;
+        try {
+            let resultado = await usersServices.eliminarUni(data)
             if(resultado){
                 console.log(" Se elimino correctamente")
             }      

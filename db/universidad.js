@@ -1,4 +1,4 @@
-const { DataTypes, Sequelize } = require('sequelize')
+const { DataTypes, Sequelize, BOOLEAN } = require('sequelize')
 const sequelize = require('./conexion')
 const usuario = require('./usuario')
 
@@ -18,7 +18,7 @@ const universidad = sequelize.define('universidades', {
         allowNull: false,
     },
     estatus_uni: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(80),
         allowNull: false
     },
     

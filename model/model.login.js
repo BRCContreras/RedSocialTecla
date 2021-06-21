@@ -29,15 +29,9 @@ module.exports.newUsuario = async (usr)=> {
       nombre: usr.nombre, 
       apellidos: usr.apellidos, 
       email: usr.email, 
-      movil: usr.movil,
-      telefono: usr.telefono,
-      ciudad: usr.ciudad,
-      estado: usr.estado,
-      cp: usr.cp,
       bandera_admin:usr.bandera_admin,
       contrasena: usr.contrasena,
-      fechaAlta: usr.fechaAlta,
-      idEstatus: usr.idEstatus  })
+      })
 
     return resultado
 
@@ -49,15 +43,9 @@ module.exports.modUsuario = async (usr) => {
       nombre: usr.nombre,
       apellidos: usr.apellidos,
       email: usr.email, 
-      movil: usr.movil,
-      telefono: usr.telefono,
-      ciudad: usr.ciudad,
-      estado: usr.estado,
-      cp: usr.cp,
       bandera_admin:usr.bandera_admin,
       contrasena: usr.contrasena,
-      fechaAlta: usr.fechaAlta,
-      idEstatus: usr.idEstatus }, {where: { id : usr.id}})
+       }, {where: { id : usr.id}})
     return resultado;
 }catch (err){
     throw new Error ('No se pudo actualizar el producto seleccionado')
