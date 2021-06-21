@@ -108,6 +108,15 @@ module.exports.eliminarUsuario = async (data) => {
         throw new Error ('No se pudo eliminar el usuario seleccionado')
     }
 };
+
+module.exports.eliminarIdioma = async (data) => {
+    try {
+        let resultado = await dbIdioma.eliminarIdioma(data) 
+        return true;
+    }catch (err){
+        throw new Error ('No se pudo eliminar el usuario seleccionado')
+    }
+};
 module.exports.buscarUsuario = async (data)=>{
     try {
         let resultado = await dbUsuarios.buscarUsuarios(data)
@@ -119,7 +128,7 @@ module.exports.buscarUsuario = async (data)=>{
 
 module.exports.buscarIdioma = async (data)=>{
     try {
-        let resultado = await dbUsuarios.buscarIdiomas(data)
+        let resultado = await dbIdioma.buscarIdiomas(data)
         return resultado
     }catch (err) {
         throw new Error ('Ocurrio un problema en el controlador al BUSCAR usuario')

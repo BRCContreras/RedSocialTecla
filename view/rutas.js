@@ -105,10 +105,24 @@ module.exports = (app) => {
             let resultado = await usersServices.buscarUsuario(data)
             console.log(resultado)
             let idiomas = await usersServices.listarIdiomas(data);
-            console.log(idiomas)
             res.render('editProfile', {
                 result:resultado.dataValues, idioma:idiomas})
                 
+        }catch(err){
+            console.log(err);
+            res.status(400).json('No se puede mostrar');
+        }
+
+    })
+
+    
+    app.get('/listProfile/:id', async (req,res)=>{
+        let data = req.params.id;
+        try {
+
+            let idiomas = await usersServices.listarIdiomas(data);
+            console.log(idiomas)
+            res.send(idiomas)
         }catch(err){
             console.log(err);
             res.status(400).json('No se puede mostrar');
@@ -145,12 +159,12 @@ module.exports = (app) => {
         let data = req.params.id;
         try {
             let resultado = await usersServices.buscarIdioma(data)
-            res.render('editlanguage', {
+            res.render('editLanguage', {
                 result:resultado.dataValues 
             })
             // res.send(200,resultado[id]);
         }catch (err){
-            res.status(400).json('Error al dirigirse al perfil del usuario')
+            res.status(400).json('Error al dirigirse al perfil idiomas')
         }
     })
     
@@ -158,14 +172,14 @@ module.exports = (app) => {
         let usuMod = req.body
         try {
             let resultado = await usersServices.modificarIdioma(usuMod)
-            console.log(" Se elimino correctamente")
+            console.log(" Se actualizo correctamente")
         }catch (err){
             console.log(err)
             res.status(400).json('Error al modificar usuario')
         }
     })
 
-    app.post('/deleteLanguage/:id', async (req,res)=>{
+    app.get('/deleteLanguage/:id', async (req,res)=>{
         let data = req.params.id;
         try {
             let resultado = await usersServices.eliminarIdioma(data)

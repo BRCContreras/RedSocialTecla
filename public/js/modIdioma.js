@@ -31,7 +31,8 @@ registro.addEventListener('click', async (event) => {
         })
         
     })
-    if(resultado.ok)    {
+
+    if(resultado)    {
         swal({
             title: "Se actualizo la informacion del usuario correctamente",
             icon: "success",
@@ -41,12 +42,5 @@ registro.addEventListener('click', async (event) => {
         }, 3000);
     }
     console.log('resultadooo',resultado)
-   // if(resultado.status == 400){
-    //    swal({
-     //       title: "No tienes permiso para modificar",
-       //     icon: "error",
-       //   });
-  //  } else {
    
-   // }
 })

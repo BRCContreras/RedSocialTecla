@@ -50,7 +50,7 @@ module.exports.modIdioma = async (usr) => {
 }
   }
 
-module.exports.eliminarUsuario = async (id) => {
+module.exports.eliminarIdioma = async (id) => {
     try{
         let resultado = await usuario.destroy({
             where: { id: id }
@@ -67,17 +67,17 @@ module.exports.eliminarUsuario = async (id) => {
 //} 
 
 module.exports.listar = async (data) => {
-    try{
-      let resultado = await usuario.findAll({
-        where: { id_user : data }
-      })
-      return resultado[0]
-    }catch (err) {
-      throw new Error (err)
-    }
+  try{
+    let resultado = await usuario.findAll({
+      where: { id_user : data }
+    })
+    return resultado[0]
+  }catch (err) {
+    throw new Error (err)
+  }
   }
 
-  module.exports.buscarIdioma = async (data) => {
+  module.exports.buscarIdiomas = async (data) => {
     try{
       let resultado = await usuario.findAll({
         where: { id : data }
