@@ -18,9 +18,22 @@
                       <div class="col-sm-2">
       
                       </div>
+
+                      <div class="col-sm-4">
+                        <label for="firstName" class="form-label">ID</label>
+                        <input type="text" class="form-control" id="idUser" placeholder="" value="<%= result.id %>"
+                          readonly>
+
+                    </div>
+                    <div class="col-sm-2">
+      
+                    </div>
+                    <div class="col-sm-2">
+    
+                    </div>
                       <div class="col-sm-4">
                         <label for="firstName" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="name" placeholder="" value="" required>
+                        <input type="text" class="form-control" id="name" placeholder="" value="<%= result.nombre_idioma %>" required>
                         <div class="invalid-feedback">
                           Nombre (s) es un campo obligatorio.
                         </div>
@@ -29,7 +42,7 @@
                       <div class="col-sm-4">
                         <label for="firstName" class="form-label">Nivel</label>
                           
-                          <select value="" id="level" name="tipo_usuario"
+                          <select value="<%= result.nivel_idioma %>" id="level" name="tipo_usuario"
                             class="form-select" tabindex="6" required>
                             
                             <option value="Basico" >Basico</option>
@@ -49,7 +62,7 @@
                       <div class="col-sm-4">
                         <label for="firstName" class="form-label">Cuentas con alguna certificacion en el idioma?</label>
                           
-                          <select value="" id="certified" name="tipo_usuario"
+                          <select value="<%= result.cert_idioma %>" id="certified" name="tipo_usuario"
                             class="form-select" tabindex="6" required>
                             
                             <option value="Si" >Si</option>
@@ -61,7 +74,7 @@
 
                       <div class="col-sm-4">
                         <label for="firstName" class="form-label">Nombre de la certificacion</label>
-                        <input type="text" class="form-control" id="describe" placeholder="" value="" required>
+                        <input type="text" class="form-control" id="describe" placeholder="" value="<%= result.nom_cert_idioma %>" required>
                         <div class="invalid-feedback">
                          No es un campo obligatorio.
                         </div>
@@ -75,7 +88,7 @@
                         <a href="/editProfile" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Cancelar</a>;
 
                       <a href="" id="submit" class="btn btn-secondary btn-lg " tabindex="-1" role="button"
-                        aria-disabled="true">Agregar</a>
+                        aria-disabled="true">Modificar</a>
                       
                     </div>
       
@@ -96,6 +109,6 @@
     </body>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="/js/registroIdioma.js"></script>
+    <script src="/js/modIdioma.js"></script>
 
     </html>

@@ -1,10 +1,20 @@
 const sequelize = require('../db/conexion');
 const dbUsuarios = require ('../model/model.login');
+const dbIdioma = require ('../model/model.idiomas');
 const jwt = require('jsonwebtoken');
 
-module.exports.listarUsuarios = async () =>{
+module.exports.listarIdiomas = async (usr) =>{
     try{
-        let resultado = await dbUsuarios.listar();
+        let resultado = await dbIdioma.listar(usr);
+        return resultado;
+    }catch(err){
+        throw new Error ('Ocurrio un problema en la consulta con la db ')
+    }
+}
+
+module.exports.listarUsuarios = async (usr) =>{
+    try{
+        let resultado = await dbUsuarios.listar(usr);
         return resultado;
     }catch(err){
         throw new Error ('Ocurrio un problema en la consulta con la db ')
@@ -81,6 +91,15 @@ module.exports.modificarUsuario = async (usuarioMod)=>{
     }
 }
 
+module.exports.modificarIdioma = async (usuarioMod)=>{
+    try {
+        let usuarioResultado = await dbIdioma.modIdioma(usuarioMod);   
+        return usuarioResultado
+    }catch (err){
+        throw new Error ('No se pudo actualizar el usuario seleccionado')
+    }
+}
+
 module.exports.eliminarUsuario = async (data) => {
     try {
         let resultado = await dbUsuarios.eliminarUsuario(data) 
@@ -89,12 +108,36 @@ module.exports.eliminarUsuario = async (data) => {
         throw new Error ('No se pudo eliminar el usuario seleccionado')
     }
 };
-
 module.exports.buscarUsuario = async (data)=>{
     try {
         let resultado = await dbUsuarios.buscarUsuarios(data)
         return resultado
     }catch (err) {
         throw new Error ('Ocurrio un problema en el controlador al BUSCAR usuario')
+    }
+}
+
+module.exports.buscarIdioma = async (data)=>{
+    try {
+        let resultado = await dbUsuarios.buscarIdiomas(data)
+        return resultado
+    }catch (err) {
+        throw new Error ('Ocurrio un problema en el controlador al BUSCAR usuario')
+    }
+}
+
+module.exports.agregarIdioma = async (idiomaNuevo)=>{
+    try {
+        let resultado = await dbIdioma.existenciaDeIdioma(idiomaNuevo)
+        if (resultado) {
+            throw new Error ('El usuario ya existe')
+        }else {
+            let usuarioResult = await dbIdioma.newIdioma(idiomaNuevo)
+            return 'Usuario creado'
+        }
+
+    }catch (err){
+        console.log(err)
+        throw new Error ('no pude agregar el idioma')
     }
 }
