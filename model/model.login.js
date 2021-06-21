@@ -5,7 +5,7 @@ module.exports.existenciaDeUsuario = async (usr)=>{
     //chequear con la base de datos que exista el usuario
     //Usuario y pass
     //devuelvo un OK
-    let resultado = await usuario.findOne({where: {email:usr.email, contrasena: usr.contrasena}})
+    let resultado = await usuario.findOne({where: {email:usr.email}})
     // null
     if (resultado === null){
         return false

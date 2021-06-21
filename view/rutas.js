@@ -43,7 +43,7 @@ module.exports = (app) => {
         }
     })
 
-    app.get('/registro', async (req,res)=>{
+    app.get('/add', async (req,res)=>{
         try{
             res.render('registro');
         }catch(err){
@@ -52,7 +52,19 @@ module.exports = (app) => {
         }
 
     })
-    app.get('/usuarios', async (req,res)=>{
+
+    app.post('/add',middJsonAuth.chkRegistro, async (req, res)=>{
+        let usuarioNuevo = req.body
+        try {
+            let resultado = await usersServices.crearUsuario(usuarioNuevo)
+            res.status(200).json('usuario creado correctamente')
+        }catch (err){
+            console.log(err)
+            res.status(400).json('algo raro paso')
+        }
+    })
+
+    app.get('/users', async (req,res)=>{
         try {
             let resultado = await usersServices.listarUsuarios();
             console.log("estos son los usuarios", resultado);
@@ -63,16 +75,56 @@ module.exports = (app) => {
         }
     })
 
-    app.get('/index/presupuesto', async (req,res)=>{
-        try{
-            
-            res.render('newPresupuesto');
+    app.get('/profile/:id', async (req,res)=>{
+        let data = req.params.id;
+        try {
+            let resultado = await usersServices.buscarUsuario(data)
+            res.render('profileUser', {
+                result:resultado.dataValues 
+            })
+            // res.send(200,resultado[id]);
         }catch (err){
-            console.log(err)
-            res.estatus(400).json('No se puede mostrar')
+            res.status(400).json('Error al dirigirse al perfil del usuario')
         }
     })
-   
-   
-   
+
+    app.get('/friends', async (req,res)=>{
+        try {
+            let resultado = await usersServices.listarUsuarios();
+            res.render('friendsUser', {results:resultado});
+            res.send(200,resultado)
+        }catch (err){
+            console.log(err)
+            res.status(400).json('Error al dirigirse a la ruta vistas')
+        }
+    }) 
+
+    app.get('/editProfile/:id', async (req,res)=>{
+        let data = req.params.id;
+        try {
+            let resultado = await usersServices.buscarUsuario(data)
+            res.render('editProfile', {
+                result:resultado.dataValues 
+            })
+           
+        }catch(err){
+            console.log(err);
+            res.status(400).json('No se puede mostrar');
+        }
+
+    })
+
+    app.get('/editProfile/language/:id', async (req,res)=>{
+        let resultado = req.params.id;
+        try{
+            res.render('language', {
+                result:resultado
+            })
+        }catch(err){
+            console.log(err);
+            res.status(400).json('No se puede mostrar');
+        }
+
+    })
+        
 }

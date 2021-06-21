@@ -1,6 +1,6 @@
 const { DataTypes, Sequelize } = require('sequelize')
 const sequelize = require('./conexion')
-const universidad = require('./universidad')
+
 
 //Definicion del modelo de usuario
 const usuario = sequelize.define('usuario', {
@@ -19,7 +19,14 @@ const usuario = sequelize.define('usuario', {
     },
     email: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isEmail: true
+        },
+        unique: {
+            args: true,
+            msg: 'Correo electrónico ya registrado'
+        }
     },
     bandera_admin: {
         type: DataTypes.INTEGER,

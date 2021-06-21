@@ -4,6 +4,7 @@ const iniciarSesion = document.getElementById("submit")
 
 class Usuarios {
     constructor(email, contrasena){
+       this.id = "",
         this.email = email,
         this.contrasena = contrasena,
         this.nombre = "",
@@ -43,6 +44,7 @@ iniciarSesion.addEventListener('click', async (event) => {
         alert('Usuario o contraseña incorrecta')
     } else {
         let data = await Usuarios.recuperaUsuario();
+        data.id = vuelta.user.id;
         data.email = vuelta.user.email;
         data.permiso = vuelta.user.bandera_admin;
         data.nombre = vuelta.user.nombre + " " + vuelta.user.apellidos;

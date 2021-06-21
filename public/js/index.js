@@ -32,7 +32,7 @@ getInfoProductos()
 
 
 async function getProductosByCategoria() {
-  let respuesta = await fetch(urlBack+'/usuarios');
+  let respuesta = await fetch(urlBack+'/users');
   console.log(respuesta)
   let data = await respuesta.json();
   console.log(data)

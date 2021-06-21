@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const Joi = require('@hapi/joi')
-const {modeloLogin} = require('./middCheck')
+const {modeloLogin, modeloRegistro} = require('./middCheck')
 
 module.exports.verificacionUsuario = async (req,res,next) =>{
     let token = req.headers.authorization
@@ -22,6 +22,16 @@ module.exports.verificacionUsuario = async (req,res,next) =>{
 module.exports.chkLogin = async (req,res,next)=> {
     try{
         await Joi.attempt(req.body, modeloLogin, 'Los datos ingresados no son correctos para el login')
+        return next()
+    }catch (err){
+        console.log(err)
+        res.status(500).json({error: err.message})
+    }
+}
+
+module.exports.chkRegistro = async (req,res,next)=> {
+    try{
+        await Joi.attempt(req.body, modeloRegistro, 'Los datos ingresados no son correctos para el registro')
         return next()
     }catch (err){
         console.log(err)

@@ -1,0 +1,192 @@
+<%- include("headers/cabecera.index.ejs") %>
+
+  <body class="bg-light">
+    <%- include("headers/header.ejs") %>
+    <div class="container">
+      <main>
+        <div class="py-5 text-center">
+          <img class="d-block mx-auto mb-4" src="/icons/person-icon.png" alt="" width="96" height="99">
+          <h2><%= result.nombre %> <%= result.apellidos %></h2>
+        </div>
+
+        <div class="row g-8 ">
+
+          <div class="col-md-12 col-lg-12">
+            <h4 class="mb-3 text-center">Información de usuario</h4>
+            <form id="formulario" class="needs-validation" novalidate display: contents;>
+              <div class="row g-3">
+                <div class="col-sm-2">
+
+                </div>
+
+                <div class="col-sm-4">
+                  <label for="firstName" class="form-label">ID</label>
+                  <input type="text" class="form-control" id="idUser" placeholder="" value="<%= result.id %>"
+                    readonly>
+
+                </div>
+
+                <div class="col-sm-4">
+                  <label for="firstName" class="form-label">Tipo de Usuario</label>
+                    
+                    <select value="<%=result.bandera_admin%>" id="admin_bandera" name="tipo_usuario"
+                      class="form-select" tabindex="6" required>
+                      
+                      <option value="1" <%=result.bandera_admin=='1' ? "selected" : '' %> >Administrador</option>
+                      <option value="2"<%=result.bandera_admin=='2' ? "selected" : '' %> >Usuario</option>
+                    </select>
+                  
+                </div>
+              
+
+              <div class="col-sm-2">
+
+              </div>
+              <div class="col-sm-2">
+
+              </div>
+              <div class="col-sm-4">
+                <label for="firstName" class="form-label">Nombre (s)</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="<%= result.nombre %>"
+                  required>
+                <div class="invalid-feedback">
+                  Nombre (s) es un campo obligatorio.
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <label for="lastName" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="<%= result.apellidos %>"
+                  required>
+                <div class="invalid-feedback">
+                  Apellidos es un campo obligatorio.
+                </div>
+              </div>
+              <div class="col-sm-2">
+
+              </div>
+              <div class="col-sm-2">
+
+              </div>
+
+              <div class="col-8">
+                <label for="email" class="form-label">Email <span class="text-muted"></span></label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com"
+                  value="<%= result.email %>" required>
+                <div class="invalid-feedback">
+                  Por favor ingresa una dirección de correo válida.
+                </div>
+              </div>
+              <div class="col-sm-2">
+
+              </div>
+              <div class="col-sm-2">
+
+              </div>
+              <div class="col-4">
+                <label for="address" class="form-label">Contraseña <span class="text-muted"></span></label>
+                <input type="password" class="form-control" id="pass" value="<%= result.contrasena %>" required>
+                <div class="invalid-feedback">
+                  Por favor ingresar un télefono de contacto.
+                </div>
+              </div>
+              <div class="col-4">
+                <label for="address" class="form-label">Confirmar Contraseña <span class="text-muted"></span></label>
+                <input type="password" class="form-control" id="pass2" value="<%= result.contrasena %>" required>
+                <div class="invalid-feedback">
+                  Por favor ingresar un télefono de contacto.
+                </div>
+              </div>
+              <div class="col-sm-2">
+
+              </div>
+              <div class="col-sm-2">
+
+              </div>
+              <div class="col-4">
+                <label for="address" class="form-label">Télefono <span class="text-muted">(Opcional)</span></label>
+                <input type="telefono" class="form-control" id="telefono" placeholder="55 XX XX XX XX "
+                  value="<%= result.telefono %>" required>
+                <div class="invalid-feedback">
+                  Por favor ingresar un télefono de contacto.
+                </div>
+              </div>
+
+              <div class="col-4">
+                <label for="celular" class="form-label">Celular </label>
+                <input type="text" class="form-control" id="celular" placeholder="55 XX XX XX XX"
+                  value="<%= result.movil %>" required>
+                <div class="invalid-feedback">
+                  Por favor ingresar un número celular de contacto.
+                </div>
+              </div>
+              <div class="col-sm-2">
+
+              </div>
+              <div class="col-sm-2">
+
+              </div>
+
+              <div class="col-md-3">
+                <label for="country" class="form-label">Ciudad</label>
+                <select class="form-select" id="country" required>
+                  <option value=" ">
+                    <%= result.ciudad %>
+                  </option>
+                  <option>United States</option>
+                  <option>Mexico</option>
+                </select>
+                <div class="invalid-feedback">
+                  Seleccione una ciudad válida.
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <label for="state" class="form-label">Estado</label>
+                <select class="form-select" id="state" required>
+                  <option value=" ">
+                    <%= result.ciudad %>
+                  </option>
+                  <option>California</option>
+                </select>
+                <div class="invalid-feedback">
+                  Seleccione un estado válido.
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <label for="zip" class="form-label">C.P</label>
+                <input type="text" class="form-control" id="zip" placeholder="" value="<%= result.cp %>" required>
+                <div class="invalid-feedback">
+                  Código postal obligatorio.
+                </div>
+              </div>
+              <div class="col-sm-2">
+
+              </div>
+          </div>
+        </div>
+          <hr class="my-4">
+          <div style="text-align: center;">
+            <a href="/usuarios"  class="btn btn-secondary btn-lg " tabindex="-1" role="button"
+              aria-disabled="true">Cancelar</a>
+            <a href="" id="submit" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Modificar
+            </a>
+          </div>
+
+          </form>
+        </div>
+    </div>
+    </main>
+
+
+    <%- include("headers/footer.ejs") %>
+      
+      <script src="/js/bootstrap.bundle.min.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"> </script>
+      <!--<script src="../js/modUsuario.js"></script>-->
+
+      <!-- <script src="form-validation.js"></script> -->
+</body>
+
+</html>
