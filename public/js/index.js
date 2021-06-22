@@ -68,9 +68,8 @@ function mostrarProductos() {
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="" class="btn btn-sm btn-outline-secondary agregar-carrito" data-id="${element.id}">Solicitud de amistad</a>
-                  <button  class="ver-detalle" type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Ver
-                  </button>
+                  <a href="/editProfile/${element.id}"  class="btn btn-sm btn-outline-secondary ver-detalle" data-id="${element.id}">Ver</a>
+                 
                   <!-- Modal -->
                   <div hidden="false" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">

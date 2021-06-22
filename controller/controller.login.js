@@ -167,7 +167,7 @@ module.exports.agregarUniversidad = async (idiomaNuevo)=>{
 
     }catch (err){
         console.log(err)
-        throw new Error ('no pude agregar el idioma')
+        throw new Error ('no pude agregar la universidad')
     }
 }
 

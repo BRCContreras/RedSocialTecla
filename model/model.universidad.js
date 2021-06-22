@@ -1,11 +1,12 @@
 const sequelize = require('../db/conexion')
 const usuario = require('../db/universidad')
+const { Op } = require("sequelize");
 
 module.exports.existenciaDeUniversidad = async (usr)=>{
     //chequear con la base de datos que exista el usuario
     //Usuario y pass
     //devuelvo un OK
-    let resultado = await usuario.findOne({where: {nombre_uni:usr.nombre_uni}})
+    let resultado = await usuario.findOne({where:{[Op.and]: [ {nombre_uni:usr.nombre_uni },{ id_user:usr.id_user}]}})
     // null
     if (resultado === null){
         return false

@@ -6,8 +6,6 @@ class Carrito {
             idProducto: producto.querySelector('a').getAttribute('data-id'),
             tituloProducto: producto.querySelector('h5').textContent,
             imagenProducto: producto.querySelector('img').src,
-            precioProducto: producto.querySelector('small').getAttribute('data-id'),
-            cantidad: 1
           }
         let productosLS;
         productosLS = this.obtenerProductosLocalStorage();
@@ -18,7 +16,7 @@ class Carrito {
         });
           if(productosLS === itemProducto.idProducto){
             swal({
-              text: "El articulo seleccionado ya se encuentra en la cesta",
+              text: "La solicitud ya fue enviada",
               button: "Ok!",
             });
           }else{
@@ -34,8 +32,9 @@ class Carrito {
           <td>
               <img src="${producto.imagenProducto} " width=100>
           </td>
-          <td>${producto.tituloProducto}</td>
-          <td>${`$`+producto.precioProducto}</td> 
+          <td style="
+          color: white;
+      ">${producto.tituloProducto}</td>
           <td>
             <a href="#" type="button" class="btn btn-sm btn-outline-secondary borrar-producto" data-id="${producto.idProducto}">Quitar</a>
           <td>    
@@ -89,8 +88,9 @@ class Carrito {
             <td>
                 <img src="${producto.imagenProducto} " width=100>
             </td>
-            <td>${producto.tituloProducto}</td>
-            <td>${`$`+producto.precioProducto}</td> 
+            <td style="
+            color: white;
+        ">${producto.tituloProducto}</td> 
             <td>
               <a href="#" type="button" class="btn btn-sm btn-outline-secondary borrar-producto" data-id="${producto.idProducto}">Quitar</a>
             <td>    
